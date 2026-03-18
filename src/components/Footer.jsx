@@ -1,4 +1,5 @@
 import './Footer.css'
+import logo from '../imgs/sreehostellogo.png'
 
 function Footer() {
   return (
@@ -7,8 +8,7 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <a href="#home" className="logo">
-              <i className="fas fa-home"></i>
-              <span>Sree PG <span className="logo-accent">Ladies Hostel</span></span>
+              <img src={logo} alt="Sree Ladies PG Hostel" className="footer-logo-img" />
             </a>
             <p>A safe, comfortable, and welcoming home designed exclusively for women. Experience the joy of community living with modern amenities.</p>
           </div>

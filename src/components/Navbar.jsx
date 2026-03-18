@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Navbar.css'
+import logo from '../imgs/sreehostellogo.png'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -29,8 +30,7 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <a href="#home" className="logo">
-          <i className="fas fa-home"></i>
-          <span>Sree PG <span className="logo-accent">Ladies Hostel</span></span>
+          <img src={logo} alt="Sree Ladies PG Hostel" className="logo-img" />
         </a>
         <button
           className={`mobile-toggle ${mobileOpen ? 'active' : ''}`}

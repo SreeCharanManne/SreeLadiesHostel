@@ -1,5 +1,6 @@
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './About.css'
+import logo from '../imgs/sreehostellogo.png'
 
 function About() {
   const sectionRef = useScrollAnimation()
@@ -10,12 +11,7 @@ function About() {
         <div className="about-grid">
           <div className="about-image animate-on-scroll">
             <div className="about-img-placeholder">
-              <i className="fas fa-building"></i>
-              <p>Our Beautiful Hostel</p>
-            </div>
-            <div className="about-experience">
-              <span className="experience-number">2+</span>
-              <span className="experience-text">Years of Trust</span>
+              <img src={logo} alt="Sree Ladies PG Hostel" className="about-logo" />
             </div>
           </div>
           <div className="about-content animate-on-scroll">

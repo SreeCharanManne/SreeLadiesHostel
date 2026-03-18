@@ -27,21 +27,18 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--white);
-  z-index: 1001;
+  text-decoration: none;
 }
 
-.navbar.scrolled .logo {
-  color: var(--dark);
+.logo-img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: var(--transition);
 }
 
-.logo i {
-  font-size: 1.5rem;
-  color: var(--secondary);
+.navbar.scrolled .logo-img {
+  height: 55px;
 }
 
 .logo-accent {
