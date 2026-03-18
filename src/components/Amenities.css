@@ -1,0 +1,75 @@
+.amenities {
+  background: var(--off-white);
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.amenity-card {
+  background: var(--white);
+  padding: 32px 24px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 1px solid var(--light-gray);
+  transition: var(--transition);
+}
+
+.amenity-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.amenity-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--light-bg), var(--light-gray));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.amenity-card:hover .amenity-icon {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.amenity-icon i {
+  font-size: 1.6rem;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.amenity-card:hover .amenity-icon i {
+  color: var(--white);
+}
+
+.amenity-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.amenity-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .amenities-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
