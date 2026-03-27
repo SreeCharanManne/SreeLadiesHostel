@@ -123,18 +123,6 @@ npm run preview
 
 ---
 
-## 📍 Hostel Info
-
-| Detail | Info |
-|---|---|
-| **Location** | 54-16-3/10, Plot No 16, Central Excise Colony, Near Loyola College, Vijayawada - 520008 |
-| **Phone** | +91-8374226896 |
-| **Visiting Hours** | 8:00 AM – 8:00 PM, 7 days a week |
-| **AC Room** | ₹10,000/month |
-| **Non-AC Room** | ₹8,000/month |
-
----
-
 ## 📄 License
 
 This project is private and not open for redistribution.
