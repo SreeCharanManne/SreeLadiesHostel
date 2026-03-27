@@ -1,16 +1,38 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import './Contact.css'
 
 function Contact() {
   const sectionRef = useScrollAnimation()
+  const formRef = useRef()
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
-    e.target.reset()
+    setLoading(true)
+    setError(false)
+
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+      .then(() => {
+        setSubmitted(true)
+        setLoading(false)
+        formRef.current.reset()
+        setTimeout(() => setSubmitted(false), 5000)
+      })
+      .catch((err) => {
+        console.error('EmailJS Error:', err)
+        setError(true)
+        setLoading(false)
+        setTimeout(() => setError(false), 5000)
+      })
   }
 
   return (
@@ -46,17 +68,22 @@ function Contact() {
             </div>
           </div>
           <div className="contact-form-wrapper animate-on-scroll">
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
               <h3>Send Us a Message</h3>
               {submitted && (
                 <div className="form-success">
                   <i className="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
                 </div>
               )}
+              {error && (
+                <div className="form-error">
+                  <i className="fas fa-exclamation-circle"></i> Something went wrong. Please try again or call us directly.
+                </div>
+              )}
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full Name *</label>
-                  <input type="text" id="name" name="name" placeholder="Your full name" required />
+                  <input type="text" id="name" name="from_name" placeholder="Your full name" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number *</label>
@@ -65,22 +92,26 @@ function Contact() {
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" />
+                <input type="email" id="email" name="from_email" placeholder="your@email.com" />
               </div>
               <div className="form-group">
                 <label htmlFor="roomType">Room Preference</label>
-                <select id="roomType" name="roomType">
+                <select id="roomType" name="room_type">
                   <option value="">Select a room type</option>
-                  <option value="ac">AC Room — ₹10,000/mo</option>
-                  <option value="nonac">Non-AC Room — ₹8,000/mo</option>
+                  <option value="AC Room — ₹10,000/mo">AC Room — ₹10,000/mo</option>
+                  <option value="Non-AC Room — ₹8,000/mo">Non-AC Room — ₹8,000/mo</option>
                 </select>
               </div>
               <div className="form-group">
                 <label htmlFor="message">Your Message</label>
                 <textarea id="message" name="message" rows="4" placeholder="Tell us what you're looking for..."></textarea>
               </div>
-              <button type="submit" className="btn btn-primary btn-full">
-                <i className="fas fa-paper-plane"></i> Send Enquiry
+              <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
+                {loading ? (
+                  <><i className="fas fa-spinner fa-spin"></i> Sending...</>
+                ) : (
+                  <><i className="fas fa-paper-plane"></i> Send Enquiry</>
+                )}
               </button>
             </form>
           </div>
